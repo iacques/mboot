@@ -1,5 +1,5 @@
 # Mboot
-    Mboot is a bash script designed to create multi-boot disk capable of initializing and installing operating systems directly from ISO files.
+Mboot is a bash script designed to create multi-boot disk capable of initializing and installing operating systems directly from ISO files.
 
 ## 🚀 Features
 - Automatically formats and prepares target drive for multi-booting;
