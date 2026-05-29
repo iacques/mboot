@@ -68,7 +68,7 @@ sudo ./mboot.sh
 6. Add your ISO files: Copy your downloaded ISO images directly into the `/MISO/iso/` directory;
 7. Mount the boot partition: Mount the primary boot partition (`/MBOOT`);
 9. Default Menu Entry: The script automatically generates a baseline configuration file with a default entry pointing to Debian 13.5 (LXQT) located at `/MBOOT/boot/grub/grub.cfg`;
-9. Add more ISOs: Edit the `/MBOOT/boot/grub/grub.cfg` file to add more operating systems. Make sure to update the menu entries with your specific ISO filenames;
+9. Add more ISOs: Edit the `/MBOOT/boot/grub/grub.cfg` file to add more operating systems. Make sure to update the menu entries with your specific ISO filenames.
 
 # Custom menu entries
 Use the grub.cfg.menuentry.example as templates for your custom entries.
@@ -77,4 +77,3 @@ Use the grub.cfg.menuentry.example as templates for your custom entries.
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. For more information, please read the [GNU General Public License v3.0](https://gnu.org).
 
 Copyright (C) 2026 Jacques Eduardo Nunes
-
