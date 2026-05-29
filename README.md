@@ -74,6 +74,6 @@ sudo ./mboot.sh
 Use the grub.cfg.menuentry.example as templates for your custom entries.
 
 # Licence
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. For more information, please read the [GNU General Public License v3.0](https://gnu.org).
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. For more information, please read the [GNU General Public License v3.0](https://www.gnu.org/licenses/quick-guide-gplv3.html).
 
 Copyright (C) 2026 Jacques Eduardo Nunes
