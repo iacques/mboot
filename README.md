@@ -71,7 +71,7 @@ sudo ./mboot.sh
 9. Add more ISOs: Edit the `/MBOOT/boot/grub/grub.cfg` file to add more operating systems. Make sure to update the menu entries with your specific ISO filenames;
 
 # Custom menu entries
-Use the grub-menu-entry-examples.txt as templates for your custom entries.
+Use the grub.cfg.menuentry.example as templates for your custom entries.
 
 # Licence
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. For more information, please read the [GNU General Public License v3.0](https://gnu.org).
