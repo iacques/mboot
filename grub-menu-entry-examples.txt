@@ -1,0 +1,47 @@
+menuentry "Fedora Silverblue 44 (GNOME 50)" {
+    search --no-floppy --set=root --fs-uuid "f733c9f4-0796-4ba6-8ae9-f701b1199225"
+    set isofile="/iso/Fedora-Silverblue-ostree-x86_64-44-1.7.iso"
+    loopback loop ($root)$isofile
+    linux (loop)/images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-SB-ostree-x86_64-44 iso-scan/filename=$isofile
+    initrd (loop)/images/pxeboot/initrd.img
+}
+
+menuentry "Fedora Workstation 44 (KDE Plasma 6.6)"{
+    search --no-floppy --set=root --fs-uuid "f733c9f4-0796-4ba6-8ae9-f701b1199225"
+    set isofile="/iso/Fedora-KDE-Desktop-Live-44-1.7.x86_64.iso"
+    loopback loop ($root)$isofile
+    linux (loop)/boot/x86_64/loader/linux root=live:CDLABEL=Fedora-KDE-Live-44 rd.live.image iso-scan/filename=$isofile
+    initrd (loop)/boot/x86_64/loader/initrd
+}
+
+menuentry "Bazzite 44 (GNOME 50/STEAM)" {
+    search --no-floppy --set=root --fs-uuid "f733c9f4-0796-4ba6-8ae9-f701b1199225"
+    set isofile="/iso/bazzite-deck-gnome-stable-live-amd64.iso"
+    loopback loop ($root)$isofile
+    linux (loop)/images/pxeboot/vmlinuz root=live:CDLABEL=Bazzite-Live enforcing=0 iso-scan/filename=$isofile inst.stage2=hd:LABEL=CDLABEL=Bazzite-Live rd.live.image
+    initrd (loop)/images/pxeboot/initrd.img
+}
+
+menuentry "Manjaro Live (XFCE 4.20)" {
+    search --no-floppy --set=root --fs-uuid "f733c9f4-0796-4ba6-8ae9-f701b1199225"
+    set isofile="/iso/manjaro-xfce-26.0.4-260327-linux618.iso"
+    loopback loop ($root)$isofile
+    linux (loop)/boot/vmlinuz-x86_64 img_dev=/dev/disk/by-uuid/f733c9f4-0796-4ba6-8ae9-f701b1199225 img_loop=$isofile
+    initrd (loop)/boot/intel_ucode.img (loop)/boot/amd_ucode.img (loop)/boot/initramfs-x86_64.img
+}
+
+menuentry "Ubuntu 24.04.4 (GNOME 46)" {
+    search --no-floppy --set=root --fs-uuid "f733c9f4-0796-4ba6-8ae9-f701b1199225"
+    set isofile="/iso/ubuntu-24.04.4-desktop-amd64.iso"
+    loopback loop ($root)$isofile
+    linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=$isofile ---
+    initrd (loop)/casper/initrd
+}
+
+menuentry "Ubuntu 26.04.4 (GNOME 50)" {
+    search --no-floppy --set=root --fs-uuid "f733c9f4-0796-4ba6-8ae9-f701b1199225"
+    set isofile="/iso/ubuntu-26.04-desktop-amd64.iso"
+    loopback loop ($root)$isofile
+    linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=$isofile
+    initrd (loop)/casper/initrd
+}

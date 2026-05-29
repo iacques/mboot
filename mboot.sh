@@ -11,8 +11,8 @@
 
 # Alert the user immediately if not executed as Root
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root!"
-   exit 1
+    echo "This script must be run as root!"
+    exit 1
 fi
 
 echo "Welcome to Mboot 0.7. Use with caution!"
@@ -37,22 +37,25 @@ ISO_DEBIAN="debian-live-13.5.0-amd64-lxqt.iso"
 
 # Target disk validation
 if [[ ! -b "$DISK" ]]; then
-  echo "Invalid disk or not found: $DISK"
-  exit 1
+    echo "Invalid disk or not found: $DISK"
+    exit 1
 fi
 
 # Detects the host main OS drive to protect it
 ROOT_DISK=$(lsblk -no PKNAME $(findmnt -n -o SOURCE /) 2>/dev/null)
 if [[ -n "$ROOT_DISK" && "$DISK" == "/dev/$ROOT_DISK" ]]; then
-  echo "##### ERROR: The selected disk ($DISK) is your CURRENT SYSTEM DRIVE!"
-  echo "Operation aborted for safety."
-  exit 1
+    echo "##### ERROR: The selected disk ($DISK) is your CURRENT SYSTEM DRIVE!"
+    echo "Operation aborted for safety."
+    exit 1
 fi
 
 echo "##### ATTENTION! The following disk will be COMPLETELY WIPED: $DISK"
 echo "Make sure this is your portable USB adapter."
 read -r -p "Type YES to continue: " CONFIRM
-[[ "$CONFIRM" == "YES" ]] || { echo "Operation canceled."; exit 1; }
+[[ "$CONFIRM" == "YES" ]] || {
+    echo "Operation canceled."
+    exit 1
+}
 
 # Tests if the disk is in use by any system process
 if fuser -s "${DISK}"; then
@@ -81,11 +84,11 @@ sleep 2
 
 # Partition naming
 if [[ "$DISK" =~ "nvme" || "$DISK" =~ "mmcblk" ]]; then
-  BOOT_PART="${DISK}p1"
-  ISO_PART="${DISK}p2"
+    BOOT_PART="${DISK}p1"
+    ISO_PART="${DISK}p2"
 else
-  BOOT_PART="${DISK}1"
-  ISO_PART="${DISK}2"
+    BOOT_PART="${DISK}1"
+    ISO_PART="${DISK}2"
 fi
 
 # Formating
@@ -105,12 +108,12 @@ mkdir -p "$MNT_BOOT/EFI/BOOT" "$MNT_BOOT/boot/grub" "$MNT_ISO/iso" || { exit 1; 
 chown -R "$SUDO_USER:$SUDO_USER" "$MNT_ISO/iso" 2>/dev/null || chown -R 1000:1000 "$MNT_ISO/iso" || { exit 1; }
 
 grub2-install \
-  --target=x86_64-efi \
-  --efi-directory="$MNT_BOOT" \
-  --boot-directory="$MNT_BOOT/boot" \
-  --removable \
-  --recheck \
-  --force
+    --target=x86_64-efi \
+    --efi-directory="$MNT_BOOT" \
+    --boot-directory="$MNT_BOOT/boot" \
+    --removable \
+    --recheck \
+    --force
 
 cat <<'EOF' | tee "$MNT_BOOT/EFI/BOOT/grub.cfg" >/dev/null
 search --no-floppy --set=root --file /boot/grub/grub.cfg
@@ -146,7 +149,7 @@ menuentry "Debian 13.5 (LXQT)" {
     set isofile="/iso/$iso_debian"
     loopback loop ($root)$isofile
     linux (loop)/live/vmlinuz-6.12.86+deb13-amd64 boot=live components findiso=${isofile}
-    initrd (loop)/live/initrd.img-6.12.86+deb13-amd64    
+    initrd (loop)/live/initrd.img-6.12.86+deb13-amd64
 }
 
 menuentry "Reboot Computer" {
